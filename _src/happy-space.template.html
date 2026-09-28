@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>행복한 공간 · H.A.S. Design Lab</title>
+<meta name="description" content="행복한 공간만들기 레시피 30선 — 환경심리학이 알려주는, 오늘 바로 시작할 수 있는 공간 변화.">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .legend { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); }
+  .legend div { padding: 22px 28px 22px 0; }
+  .legend div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+  .legend dt { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+  .legend dd { font-size: 15px; color: var(--ink-2); }
+  .legend dd b { color: var(--green); font-weight: 600; }
+
+  /* Filter bar */
+  .filters { position: sticky; top: 52px; z-index: 40; background: rgba(255,255,255,.9); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+  .tabs { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { background: none; border: 0; padding: 16px 0 14px; font-size: 15px; color: var(--ink-2); cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-pressed="true"] { color: var(--green); font-weight: 600; border-bottom-color: var(--green); }
+  .subfilters { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; padding: 12px 0 14px; border-top: 1px solid var(--line-2); font-size: 14px; }
+  .subfilters label { color: var(--ink-3); display: flex; align-items: center; gap: 8px; }
+  .subfilters select, .subfilters input[type="search"] { font: inherit; font-size: 14px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 4px 2px; border-radius: 0; -webkit-appearance: none; appearance: none; }
+  .subfilters select { padding-right: 18px; background: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%) right 6px center / 5px 5px no-repeat, linear-gradient(-45deg, transparent 50%, var(--ink-3) 50%) right 2px center / 5px 5px no-repeat; cursor: pointer; }
+  .subfilters select:focus, .subfilters input:focus { outline: none; border-bottom-color: var(--green); }
+  .subfilters input[type="search"] { width: 200px; }
+  .check { cursor: pointer; }
+  .check input { accent-color: var(--green); width: 15px; height: 15px; }
+  .count { margin-left: auto; color: var(--ink-3); }
+  .count b { color: var(--green); }
+
+  /* List */
+  .list-wrap { padding: clamp(40px, 6vw, 72px) 0 clamp(88px, 12vw, 140px); }
+  .part-head { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: end; margin-top: clamp(56px, 8vw, 96px); padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
+  .part-head:first-child { margin-top: 0; }
+  .part-head .pk { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--green); }
+  .part-head h2 { font-size: clamp(28px, 4vw, 44px); }
+  .part-head p { color: var(--ink-2); font-size: 16px; }
+
+  .recipe { border-bottom: 1px solid var(--line); }
+  .recipe > button { width: 100%; background: none; border: 0; text-align: left; cursor: pointer; display: grid; grid-template-columns: 1fr auto 28px; gap: 24px; align-items: center; padding: 26px 0; }
+  .recipe > button:hover h3 { color: var(--green); }
+  .recipe h3 { font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -.02em; font-weight: 700; line-height: 1.25; transition: color .2s; }
+  .recipe .lead { font-size: 15.5px; color: var(--ink-2); margin-top: 6px; }
+  .recipe .tags { display: flex; gap: 18px; font-size: 13px; color: var(--ink-3); white-space: nowrap; }
+  .recipe .tags b { color: var(--green); font-weight: 600; margin-left: 4px; }
+  .recipe .plus { width: 28px; height: 28px; position: relative; }
+  .recipe .plus::before, .recipe .plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .recipe .plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .recipe.open .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+  .recipe .panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.2,.7,.2,1); }
+  .recipe.open .panel { grid-template-rows: 1fr; }
+  .recipe .panel > div { overflow: hidden; }
+  .detail { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); padding: 8px 0 44px; }
+  .detail h4 { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin: 28px 0 10px; }
+  .detail > div > h4:first-child { margin-top: 0; }
+  .detail p, .detail li { font-size: 15.5px; color: var(--ink-2); }
+  .detail .problem { font-size: 17px; color: var(--ink); line-height: 1.65; }
+  .steps { list-style: none; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 64px 1fr; padding: 12px 0; border-top: 1px solid var(--line-2); color: var(--ink); }
+  .steps li::before { content: "Step " counter(s); font-size: 12px; font-weight: 600; color: var(--green); padding-top: 3px; }
+  .why { background: var(--green-tint); padding: 22px 24px; border-left: 3px solid var(--green); color: var(--ink) !important; }
+  .evidence, .tips { list-style: none; }
+  .evidence li, .tips li { padding: 8px 0 8px 18px; position: relative; }
+  .evidence li::before { content: ""; position: absolute; left: 0; top: 18px; width: 8px; height: 1.5px; background: var(--green); }
+  .tips li::before { content: ""; position: absolute; left: 1px; top: 17px; width: 5px; height: 5px; background: var(--green); }
+  .ref { margin-top: 22px; font-size: 13px !important; color: var(--ink-3) !important; }
+  .empty { padding: 80px 0; text-align: center; color: var(--ink-3); font-size: 17px; display: none; }
+
+  /* Epilogue */
+  .epilogue { background: var(--green-deep); color: #fff; text-align: center; }
+  .epilogue p.big { font-size: clamp(24px, 3.6vw, 40px); line-height: 1.45; letter-spacing: -.02em; font-weight: 600; max-width: 900px; margin: 0 auto; color: rgba(255,255,255,.6); }
+  .epilogue p.big strong { color: #fff; font-weight: 600; }
+  .epilogue .kicker { color: var(--green-mint); }
+  .epilogue .lines { margin-top: 40px; font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; line-height: 1.7; }
+  .epilogue .lines span { color: var(--green-mint); }
+  .btn-line { margin-top: 44px; display: inline-block; background: none; border: 1px solid rgba(255,255,255,.5); color: #fff; padding: 14px 28px; font-size: 16px; cursor: pointer; transition: background .2s, color .2s; }
+  .btn-line:hover { background: #fff; color: var(--green-deep); }
+  .next { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .next p { font-size: 17px; color: var(--ink-2); max-width: 560px; }
+
+  @media (max-width: 760px) {
+    .legend { grid-template-columns: 1fr; }
+    .legend div, .legend div + div { padding: 16px 0; border-left: 0; }
+    .legend div + div { border-top: 1px solid var(--line); }
+    .part-head { grid-template-columns: 1fr; gap: 8px; }
+    .recipe > button { grid-template-columns: 1fr 28px; }
+    .recipe .tags { grid-column: 1; grid-row: 2; white-space: normal; flex-wrap: wrap; gap: 4px 14px; }
+    .recipe .plus { grid-row: 1; grid-column: 2; }
+    .detail { grid-template-columns: 1fr; gap: 28px; }
+    .subfilters input[type="search"] { width: 100%; }
+    .subfilters label.search { flex: 1 1 100%; }
+    .count { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="">H.A.S. Design Lab</a>
+    <div class="nav-links">
+      <a href="index.html#philosophy">철학</a>
+      <a href="index.html#research">연구</a>
+      <a href="happy-space.html" aria-current="page">행복한 공간</a>
+      <a href="book.html">책</a>
+      <a href="lecture.html">강의</a>
+      <a href="index.html#professor">교수</a>
+      <a href="index.html#activities">활동</a>
+      <a href="index.html#contact">연락처</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기"><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow reveal">행복한 공간 · 30 Recipes for Happy Spaces</p>
+    <h1 class="reveal">공간이 바뀌면,<br><em>하루가 바뀝니다.</em></h1>
+    <p class="lead reveal">환경심리학의 실증 연구를 ‘오늘 바로 적용할 수 있는 레시피’로 번역했습니다. 고민에서 출발해 실행 단계, 원리, 근거, 실전 팁까지 한 번에 확인하세요.</p>
+    <dl class="meta reveal">
+      <div><dt>Recipes</dt><dd>30선</dd></div>
+      <div><dt>Themes</dt><dd>6가지 효과</dd></div>
+      <div><dt>Author</dt><dd>권영재</dd></div>
+      <div><dt>Series</dt><dd>『디자인으로 행복할 수 있을까?』 외전</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap reveal" style="margin-bottom: clamp(40px,6vw,64px)">
+  <dl class="legend">
+    <div><dt>난이도</dt><dd><b>★</b> 오늘 바로 · <b>★★</b> 주말 수준 · <b>★★★</b> 전문가 도움</dd></div>
+    <div><dt>비용</dt><dd><b>₩</b> 거의 무료~수만 원 · <b>₩₩</b> 수십만 원 · <b>₩₩₩</b> 전문 시공</dd></div>
+    <div><dt>구성</dt><dd>고민 → 실행 단계 → 원리 → 연구 근거 → 실전 Tip</dd></div>
+  </dl>
+</div>
+
+<div class="filters">
+  <div class="wrap">
+    <div class="tabs" id="tabs" role="toolbar" aria-label="테마 선택"></div>
+    <div class="subfilters">
+      <label>장소
+        <select id="place">
+          <option value="">모든 장소</option>
+          <option value="home">집 · 주거</option>
+          <option value="work">일터 · 학교</option>
+          <option value="care">병원 · 복지 · 상담</option>
+          <option value="city">동네 · 도시 · 카페</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="easy"> 오늘 바로 가능한 것만 (★)</label>
+      <label class="search"><input type="search" id="q" placeholder="키워드 검색 (예: 조명, 식물)" aria-label="레시피 검색"></label>
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap list-wrap">
+  <div id="list"></div>
+  <p class="empty" id="empty">조건에 맞는 레시피가 없습니다. 필터를 조정해 보세요.</p>
+</main>
+
+<section class="epilogue">
+  <div class="wrap">
+    <p class="kicker reveal">Epilogue</p>
+    <p class="big reveal">행복한 공간은 ‘대단한 디자인’이 아닙니다. <strong>내가 통제할 수 있고, 감각이 편안하고, 자연이 가까이 있고, 사람과 연결될 수 있는 공간.</strong></p>
+    <p class="lines reveal">오늘, 레시피 하나를 골라 시작해보세요.<br><span>공간이 바뀌면, 하루가 바뀝니다.<br>하루가 바뀌면, 삶이 바뀝니다.</span></p>
+    <button class="btn-line reveal" id="random">오늘의 레시피 뽑기</button>
+  </div>
+</section>
+
+<section class="section-alt" style="padding: clamp(64px,8vw,96px) 0">
+  <div class="wrap next">
+    <div>
+      <p class="kicker">Read More</p>
+      <p>레시피의 이론적 배경은 『디자인으로 행복할 수 있을까?』에, 설계 방법은 15주 강의자료에 담았습니다.</p>
+    </div>
+    <div style="display:flex;gap:32px;font-size:17px;flex-wrap:wrap">
+      <a class="link-arrow" href="book.html">책 소개</a>
+      <a class="link-arrow" href="lecture.html">강의자료</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" alt="H.A.S Lab — Happiness &amp; Space Design">
+    <p>레시피 출처: 권영재, 『행복한 공간만들기 레시피 30선』 (2026) · © H.A.S. Design Lab</p>
+  </div>
+</footer>
+
+<script id="data" type="application/json">__DATA__</script>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  const { parts, recipes } = JSON.parse(document.getElementById('data').textContent);
+  const PLACE = {
+    home: ['집', '아파트', '아파트 단지', '공유주거', '주거지'],
+    work: ['사무실', '교실', '학교', '회의실', '도서관', '학교 식당', '카페테리아', '단체'],
+    care: ['병원', '병실', '상담실', '상담센터', '복지시설', '대기실', '보호시설', '쉼터', '치료실', '치유정원', '관공서'],
+    city: ['공원', '카페', '동네', '거리', '상가', '골목', '도시', '커뮤니티', '커뮤니티센터', '공공건물', '복도', '지하공간']
+  };
+  const state = { part: 0, place: '', easy: false, q: '' };
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // Tabs
+  const tabs = document.getElementById('tabs');
+  [{ id: 0, title: '전체' }, ...parts].forEach(p => {
+    const b = document.createElement('button');
+    b.textContent = p.title;
+    b.dataset.part = p.id;
+    b.setAttribute('aria-pressed', p.id === 0);
+    b.addEventListener('click', () => { state.part = p.id; render(); });
+    tabs.appendChild(b);
+  });
+
+  recipes.forEach((r, i) => {
+    r.i = i;
+    r.places = r.places.map(s => s.trim());
+    r.hay = [r.title, r.lead, r.problem, r.why, ...r.steps, ...r.tips, ...r.evidence, ...r.places].join(' ').toLowerCase();
+  });
+
+  function card(r) {
+    return `<article class="recipe" id="r${r.i}">
+      <button aria-expanded="false" aria-controls="p${r.i}">
+        <div><h3>${esc(r.title)}</h3><p class="lead">${esc(r.lead)}</p></div>
+        <div class="tags"><span>난이도<b>${r.level}</b></span><span>비용<b>${r.cost}</b></span><span>${esc(r.places.join(' · '))}</span></div>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="panel" id="p${r.i}"><div>
+        <div class="detail">
+          <div>
+            <h4>이런 고민이 있다면</h4>
+            <p class="problem">${esc(r.problem)}</p>
+            <h4>이렇게 바꿔보세요</h4>
+            <ol class="steps">${r.steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+          </div>
+          <div>
+            <h4>왜 효과가 있을까?</h4>
+            <p class="why">${esc(r.why)}</p>
+            <h4>이런 연구가 증명합니다</h4>
+            <ul class="evidence">${r.evidence.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+            <h4>실전 Tip</h4>
+            <ul class="tips">${r.tips.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+            ${r.ref ? `<p class="ref">참고 · ${esc(r.ref)}</p>` : ''}
+          </div>
+        </div>
+      </div></div>
+    </article>`;
+  }
+
+  function match(r) {
+    if (state.part && r.part !== state.part) return false;
+    if (state.place && !r.places.some(p => PLACE[state.place].includes(p))) return false;
+    if (state.easy && r.level !== '★' && !r.level.startsWith('★~')) return false;
+    if (state.q && !state.q.split(/\s+/).every(w => r.hay.includes(w))) return false;
+    return true;
+  }
+
+  const list = document.getElementById('list');
+  function render() {
+    tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.part === state.part));
+    const shown = recipes.filter(match);
+    let html = '';
+    parts.forEach(p => {
+      const rs = shown.filter(r => r.part === p.id);
+      if (!rs.length) return;
+      html += `<div class="part-head"><div><p class="pk">Part ${p.id}</p><h2>${esc(p.title)}</h2></div><p>${esc(p.sub)}</p></div>`;
+      html += rs.map(card).join('');
+    });
+    list.innerHTML = html;
+    document.getElementById('count').innerHTML = `<b>${shown.length}</b>개 레시피`;
+    document.getElementById('empty').style.display = shown.length ? 'none' : 'block';
+  }
+
+  list.addEventListener('click', e => {
+    const btn = e.target.closest('.recipe > button');
+    if (!btn) return;
+    const art = btn.parentElement;
+    const open = art.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+
+  document.getElementById('place').addEventListener('change', e => { state.place = e.target.value; render(); });
+  document.getElementById('easy').addEventListener('change', e => { state.easy = e.target.checked; render(); });
+  document.getElementById('q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+  function openRecipe(i) {
+    const el = document.getElementById('r' + i);
+    if (!el) return;
+    if (!el.classList.contains('open')) el.querySelector('button').click();
+    const y = el.getBoundingClientRect().top + window.scrollY - 160;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+  document.getElementById('random').addEventListener('click', () => {
+    Object.assign(state, { part: 0, place: '', easy: false, q: '' });
+    document.getElementById('place').value = '';
+    document.getElementById('easy').checked = false;
+    document.getElementById('q').value = '';
+    render();
+    openRecipe(Math.floor(Math.random() * recipes.length));
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

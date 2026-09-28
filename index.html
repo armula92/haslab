@@ -7,87 +7,20 @@
 <meta name="description" content="호서대학교 권영재 교수 연구실 H.A.S. Design Lab — 인간의 심리와 행태에 대한 실험적 연구를 바탕으로 모두의 일상적 행복을 설계합니다.">
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root {
-    --green: #0d4a34;
-    --green-deep: #08301f;
-    --green-soft: #438a7a;
-    --green-tint: #eef4f1;
-    --ink: #1d1d1f;
-    --ink-2: #515154;
-    --ink-3: #86868b;
-    --line: #d2d2d7;
-    --bg: #ffffff;
-    --bg-alt: #f5f5f7;
-    --maxw: 1080px;
-    --gutter: clamp(20px, 5vw, 48px);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.6;
-    word-break: keep-all;
-    -webkit-font-smoothing: antialiased;
-  }
-  img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
-
-  /* ---------- Nav ---------- */
-  .nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,.78);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,.08);
-  }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 52px; }
-  .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: -.01em; color: var(--green); }
-  .nav-logo img { width: 42px; height: auto; object-fit: contain; }
-  .nav-links { display: flex; gap: 28px; font-size: 13px; color: var(--ink-2); }
-  .nav-links a { transition: color .2s; }
-  .nav-links a:hover { color: var(--green); }
-  .nav-toggle { display: none; background: none; border: 0; width: 32px; height: 32px; cursor: pointer; }
-  .nav-toggle span { display: block; width: 18px; height: 1.5px; background: var(--ink); margin: 5px auto; transition: transform .3s, opacity .3s; }
-
   /* ---------- Hero ---------- */
   .hero { text-align: center; padding: clamp(72px, 12vw, 140px) 0 clamp(48px, 7vw, 80px); }
-  .eyebrow { font-size: 14px; font-weight: 600; color: var(--green); letter-spacing: .02em; margin-bottom: 18px; }
-  .hero h1 {
-    font-size: clamp(40px, 7.4vw, 88px);
-    line-height: 1.08; letter-spacing: -.035em; font-weight: 700;
-  }
+  .hero h1 { font-size: clamp(40px, 7.4vw, 88px); line-height: 1.08; letter-spacing: -.035em; font-weight: 700; }
   .hero h1 em { font-style: normal; color: var(--green); }
-  .hero p.lead {
-    max-width: 680px; margin: 28px auto 0;
-    font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); line-height: 1.6; font-weight: 400;
-  }
+  .hero p.lead { max-width: 680px; margin: 28px auto 0; font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); line-height: 1.6; }
   .hero-cta { margin-top: 36px; display: flex; justify-content: center; gap: 32px; font-size: 17px; flex-wrap: wrap; }
-  .link-arrow { color: var(--green); font-weight: 500; }
-  .link-arrow::after { content: " ›"; font-size: 1.1em; }
-  .link-arrow:hover { text-decoration: underline; text-underline-offset: 3px; }
   .hero-image { height: clamp(320px, 62vw, 680px); overflow: hidden; }
   .hero-image img { object-position: center 70%; }
 
-  /* ---------- Sections ---------- */
-  section { padding: clamp(88px, 12vw, 150px) 0; }
-  .section-alt { background: var(--bg-alt); }
-  .kicker { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
-  h2 {
-    font-size: clamp(32px, 5vw, 56px);
-    line-height: 1.12; letter-spacing: -.03em; font-weight: 700;
-  }
-  .section-lead { margin-top: 22px; max-width: 640px; font-size: clamp(17px, 1.8vw, 20px); color: var(--ink-2); }
-
   /* Intro statement */
   .intro { text-align: center; }
-  .intro p.big {
-    font-size: clamp(24px, 3.6vw, 40px); line-height: 1.45; letter-spacing: -.02em; font-weight: 600;
-    max-width: 900px; margin: 0 auto; color: var(--ink-3);
-  }
+  .intro p.big { font-size: clamp(24px, 3.6vw, 40px); line-height: 1.45; letter-spacing: -.02em; font-weight: 600; max-width: 900px; margin: 0 auto; color: var(--ink-3); }
   .intro p.big strong { color: var(--ink); font-weight: 600; }
   .intro p.big .g { color: var(--green); }
 
@@ -101,10 +34,7 @@
 
   /* Research pillars */
   .research-head { max-width: 720px; }
-  .pillar {
-    display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center;
-    margin-top: clamp(64px, 9vw, 120px);
-  }
+  .pillar { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; margin-top: clamp(64px, 9vw, 120px); }
   .pillar.reverse .pillar-media { order: 2; }
   .pillar-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg-alt); }
   .pillar-media img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
@@ -114,28 +44,63 @@
   .pillar p { font-size: 17px; color: var(--ink-2); }
   .pillar p + p { margin-top: 12px; }
 
-  /* Commitment (dark green) */
+  /* Commitment */
   .commit { background: var(--green-deep); color: #fff; }
-  .commit .kicker { color: #8fc6b3; }
-  .commit h2 { color: #fff; }
+  .commit .kicker { color: var(--green-mint); }
   .commit-list { margin-top: clamp(56px, 8vw, 96px); }
-  .commit-row {
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: baseline;
-    padding: 40px 0; border-top: 1px solid rgba(255,255,255,.16);
-  }
+  .commit-row { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: baseline; padding: 40px 0; border-top: 1px solid rgba(255,255,255,.16); }
   .commit-row:last-child { border-bottom: 1px solid rgba(255,255,255,.16); }
   .commit-row h3 { font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -.03em; font-weight: 700; line-height: 1.15; }
-  .commit-row h3 span { display: block; font-size: 14px; font-weight: 500; letter-spacing: .04em; color: #8fc6b3; margin-top: 10px; }
+  .commit-row h3 span { display: block; font-size: 14px; font-weight: 500; letter-spacing: .04em; color: var(--green-mint); margin-top: 10px; }
   .commit-row p { font-size: clamp(17px, 1.8vw, 20px); color: rgba(255,255,255,.78); }
 
   /* Quote */
   .quote { text-align: center; padding: clamp(100px, 14vw, 180px) 0; }
-  .quote blockquote {
-    font-size: clamp(26px, 4vw, 48px); line-height: 1.35; letter-spacing: -.03em; font-weight: 700;
-    max-width: 960px; margin: 0 auto;
-  }
+  .quote blockquote { font-size: clamp(26px, 4vw, 48px); line-height: 1.35; letter-spacing: -.03em; font-weight: 700; max-width: 960px; margin: 0 auto; }
   .quote blockquote .g { color: var(--green); }
   .quote cite { display: block; margin-top: 32px; font-style: normal; font-size: 15px; color: var(--ink-3); }
+
+  /* Special contents */
+  .special-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
+  .feature { display: grid; grid-template-columns: 1fr 1fr; margin-top: clamp(56px, 8vw, 88px); min-height: 520px; }
+  .feature.reverse .feature-visual { order: 2; }
+  .feature-visual { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 48px; }
+  .feature-body { padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; background: #fff; }
+  .feature-tag { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
+  .feature-body h3 { font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -.03em; line-height: 1.18; font-weight: 700; }
+  .feature-body p { margin-top: 18px; font-size: 17px; color: var(--ink-2); }
+  .feature-body .facts { margin-top: 28px; display: flex; gap: 0; border-top: 1px solid var(--line); }
+  .feature-body .facts div { padding: 16px 28px 0 0; margin-right: 28px; }
+  .feature-body .facts b { display: block; font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--green); line-height: 1.1; }
+  .feature-body .facts span { font-size: 13px; color: var(--ink-3); }
+  .feature-body .link-arrow { margin-top: 32px; font-size: 17px; }
+
+  /* Book cover (typographic) */
+  .v-book { background: linear-gradient(160deg, #e7efe9, #d5e4da); }
+  .cover { width: min(300px, 70%); aspect-ratio: 176 / 248; background: var(--green-deep); color: #fff; padding: 28px 24px; display: flex; flex-direction: column; box-shadow: 0 30px 60px -24px rgba(8,48,31,.55), 0 2px 6px rgba(0,0,0,.12); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .feature:hover .cover { transform: translateY(-8px) rotate(-1deg); }
+  .cover small { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--green-mint); }
+  .cover strong { margin-top: auto; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.22; letter-spacing: -.03em; }
+  .cover i { font-style: normal; font-size: 12px; color: rgba(255,255,255,.7); margin-top: 10px; }
+  .cover em { font-style: normal; font-size: 12px; margin-top: 24px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.25); }
+
+  /* Recipe visual */
+  .v-recipe { background: var(--green); color: #fff; flex-direction: column; align-items: stretch; justify-content: center; }
+  .v-recipe ul { list-style: none; width: 100%; max-width: 380px; margin: 0 auto; }
+  .v-recipe li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.18); font-size: 17px; font-weight: 500; }
+  .v-recipe li span { font-size: 13px; color: var(--green-mint); white-space: nowrap; }
+  .v-recipe .v-title { max-width: 380px; margin: 0 auto 18px; width: 100%; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--green-mint); font-weight: 600; }
+
+  /* Lecture visual */
+  .v-lecture { background: #111; color: #fff; }
+  .slide-mock { width: min(420px, 88%); aspect-ratio: 16 / 9; background: #fff; color: var(--ink); padding: 7% 8%; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 30px 60px -20px rgba(0,0,0,.7); }
+  .slide-mock small { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--green); font-weight: 700; }
+  .slide-mock strong { font-size: clamp(18px, 2.2vw, 26px); letter-spacing: -.03em; line-height: 1.2; margin-top: 8px; }
+  .slide-mock i { font-style: normal; font-size: 11px; color: var(--ink-3); margin-top: 12px; }
+  .v-lecture .stack { position: relative; }
+  .v-lecture .stack::before, .v-lecture .stack::after { content: ""; position: absolute; inset: 0; background: #2a2a2c; z-index: -1; }
+  .v-lecture .stack::before { transform: translate(14px, -14px); }
+  .v-lecture .stack::after { transform: translate(28px, -28px); background: #1f1f21; z-index: -2; }
 
   /* Professor */
   .prof { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 7vw, 96px); align-items: start; }
@@ -147,77 +112,48 @@
   .prof-block { margin-top: 44px; }
   .prof-block h4 { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
   .cv { list-style: none; }
-  .cv li { display: grid; grid-template-columns: 128px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid #ececf0; font-size: 15.5px; }
+  .cv li { display: grid; grid-template-columns: 128px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line-2); font-size: 15.5px; }
   .cv .yr { color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 14.5px; }
   .cv .what b { font-weight: 600; }
   .cv .what span { display: block; color: var(--ink-2); font-size: 14.5px; margin-top: 2px; }
 
-  /* Activities gallery */
+  /* Gallery */
   .gallery { margin-top: clamp(48px, 7vw, 72px); display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
   .gallery figure { position: relative; overflow: hidden; background: #e8e8ed; }
   .gallery figure img { transition: transform 1s cubic-bezier(.2,.7,.2,1); }
   .gallery figure:hover img { transform: scale(1.04); }
-  .gallery figcaption {
-    position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 16px;
-    color: #fff; font-size: 14px; font-weight: 500;
-    background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
-  }
+  .gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 16px; color: #fff; font-size: 14px; font-weight: 500; background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0)); }
   .g-a { grid-column: span 8; aspect-ratio: 16 / 10; }
   .g-b { grid-column: span 4; }
-  .g-c { grid-column: span 4; aspect-ratio: 1 / 1; }
-  .g-d { grid-column: span 4; aspect-ratio: 1 / 1; }
-  .g-e { grid-column: span 4; aspect-ratio: 1 / 1; }
-  .g-f { grid-column: span 6; aspect-ratio: 3 / 2; }
-  .g-g { grid-column: span 6; aspect-ratio: 3 / 2; }
+  .g-c, .g-d, .g-e { grid-column: span 4; aspect-ratio: 1 / 1; }
+  .g-f, .g-g { grid-column: span 6; aspect-ratio: 3 / 2; }
 
-  /* Contact / footer */
+  /* Contact */
   .contact { text-align: center; }
   .contact h2 { max-width: 760px; margin: 0 auto; }
-  .contact-info { margin-top: 48px; display: flex; justify-content: center; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .contact-info { margin-top: 48px; display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .contact-info div { padding: 28px 40px; text-align: left; }
   .contact-info div + div { border-left: 1px solid var(--line); }
   .contact-info dt { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
   .contact-info dd { font-size: 17px; font-weight: 500; }
   .contact-info dd a { color: var(--green); }
-  footer { background: var(--bg-alt); padding: 40px 0 48px; font-size: 12px; color: var(--ink-3); }
-  footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
-  footer img { width: 150px; height: auto; object-fit: contain; }
 
-  /* Reveal */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
-  .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    html { scroll-behavior: auto; }
-  }
-
-  /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
     .philosophy-grid { grid-template-columns: 1fr; border-top: 0; }
     .ph-item, .ph-item + .ph-item { padding: 28px 0; border-left: 0; border-top: 1px solid var(--line); }
-    .pillar, .pillar.reverse { grid-template-columns: 1fr; }
-    .pillar.reverse .pillar-media { order: 0; }
+    .pillar, .pillar.reverse, .feature, .feature.reverse { grid-template-columns: 1fr; }
+    .pillar.reverse .pillar-media, .feature.reverse .feature-visual { order: 0; }
+    .feature { min-height: 0; }
+    .feature-visual { min-height: 380px; }
     .commit-row { grid-template-columns: 1fr; gap: 14px; }
     .prof { grid-template-columns: 1fr; }
     .prof-photo { position: static; max-width: 420px; }
     .g-a, .g-b, .g-f, .g-g { grid-column: span 12; }
     .g-b { aspect-ratio: 16 / 10; }
-    .g-c, .g-d, .g-e { grid-column: span 6; }
+    .g-c, .g-d { grid-column: span 6; }
     .g-e { grid-column: span 12; aspect-ratio: 16 / 10; }
   }
   @media (max-width: 760px) {
-    .nav-toggle { display: block; }
-    .nav-links {
-      position: absolute; top: 52px; left: 0; right: 0;
-      flex-direction: column; gap: 0; padding: 8px var(--gutter) 20px;
-      background: rgba(255,255,255,.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,.08);
-      font-size: 17px; display: none;
-    }
-    .nav-links a { padding: 12px 0; border-bottom: 1px solid #ececf0; }
-    .nav.open .nav-links { display: flex; }
-    .nav.open .nav-toggle span:first-child { transform: translateY(3.25px) rotate(45deg); }
-    .nav.open .nav-toggle span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
     .cv li { grid-template-columns: 1fr; gap: 2px; }
     .contact-info { flex-direction: column; }
     .contact-info div { padding: 22px 0; text-align: center; }
@@ -229,14 +165,16 @@
 
 <nav class="nav" id="nav">
   <div class="wrap">
-    <a href="#top" class="nav-logo"><img src="assets/logo.png" alt="">H.A.S. Design Lab</a>
-    <div class="nav-links" id="navLinks">
-      <a href="#philosophy">Philosophy</a>
-      <a href="#research">Research</a>
-      <a href="#commitment">Commitment</a>
-      <a href="#professor">Professor</a>
-      <a href="#activities">Activities</a>
-      <a href="#contact">Contact</a>
+    <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="">H.A.S. Design Lab</a>
+    <div class="nav-links">
+      <a href="#philosophy">철학</a>
+      <a href="#research">연구</a>
+      <a href="happy-space.html">행복한 공간</a>
+      <a href="book.html">책</a>
+      <a href="lecture.html">강의</a>
+      <a href="#professor">교수</a>
+      <a href="#activities">활동</a>
+      <a href="#contact">연락처</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기"><span></span><span></span></button>
   </div>
@@ -249,7 +187,7 @@
     <p class="lead reveal">인간의 심리와 행태에 대한 실험적 연구를 바탕으로<br>모두의 일상적 행복을 설계하는 연구 중심의 디자인 실천 랩실입니다.</p>
     <div class="hero-cta reveal">
       <a href="#philosophy" class="link-arrow">랩실의 철학 보기</a>
-      <a href="#research" class="link-arrow">연구 분야 살펴보기</a>
+      <a href="happy-space.html" class="link-arrow">행복한 공간 레시피</a>
     </div>
   </div>
 </header>
@@ -362,7 +300,86 @@
   </div>
 </section>
 
-<section class="section-alt" id="professor">
+<section class="section-alt" id="special">
+  <div class="wrap">
+    <div class="special-head">
+      <div>
+        <p class="kicker reveal">Special Contents</p>
+        <h2 class="reveal">연구를 일상의<br>언어로 옮깁니다.</h2>
+      </div>
+      <p class="section-lead reveal" style="max-width:440px">환경심리학의 실증 연구를 누구나 읽고, 배우고, 오늘 바로 적용할 수 있도록 책과 강의, 레시피로 풀어냈습니다.</p>
+    </div>
+
+    <article class="feature reveal">
+      <a class="feature-visual v-book" href="book.html" aria-label="디자인으로 행복할 수 있을까? 책 소개">
+        <div class="cover">
+          <small>Happy by Public Design</small>
+          <strong>디자인으로<br>행복할 수<br>있을까?</strong>
+          <i>공간이 바꾸는 마음, 환경이 만드는 행복</i>
+          <em>권영재</em>
+        </div>
+      </a>
+      <div class="feature-body">
+        <p class="feature-tag">Book</p>
+        <h3>디자인으로<br>행복할 수 있을까?</h3>
+        <p>행복을 거창한 감정이 아니라 설계할 수 있는 조건으로 정의합니다. 심리·생리·인지·정서·신체, 다섯 가지 효과로 공간디자인의 힘을 증명하는 책입니다.</p>
+        <div class="facts">
+          <div><b>4부</b><span>구성</span></div>
+          <div><b>14장</b><span>본문</span></div>
+          <div><b>5가지</b><span>공간의 효과</span></div>
+        </div>
+        <a class="link-arrow" href="book.html">책 소개 보기</a>
+      </div>
+    </article>
+
+    <article class="feature reverse reveal">
+      <a class="feature-visual v-recipe" href="happy-space.html" aria-label="행복한 공간 레시피 보기">
+        <p class="v-title">30 Recipes for Happy Spaces</p>
+        <ul>
+          <li>등 뒤의 벽, 앞의 풍경<span>★ · ₩</span></li>
+          <li>책상 위 작은 숲<span>★ · ₩</span></li>
+          <li>창밖 녹색 3분 처방전<span>★ · ₩</span></li>
+          <li>재미있는 계단 만들기<span>★★ · ₩₩</span></li>
+          <li>벤치의 각도를 바꾸면<span>★ · ₩</span></li>
+        </ul>
+      </a>
+      <div class="feature-body">
+        <p class="feature-tag">행복한 공간</p>
+        <h3>행복한 공간만들기<br>레시피 30선</h3>
+        <p>화분 하나, 조명 스위치 하나, 벤치의 각도. 환경심리학이 알려주는, 오늘 바로 시작할 수 있는 공간 변화를 난이도·비용·장소별로 찾아보세요.</p>
+        <div class="facts">
+          <div><b>30</b><span>레시피</span></div>
+          <div><b>6</b><span>테마</span></div>
+        </div>
+        <a class="link-arrow" href="happy-space.html">레시피 찾아보기</a>
+      </div>
+    </article>
+
+    <article class="feature reveal">
+      <a class="feature-visual v-lecture" href="lecture.html" aria-label="환경심리 기반 공간디자인 강의자료">
+        <div class="stack">
+          <div class="slide-mock">
+            <small>Environmental Psychology</small>
+            <strong>공간은 당신에게<br>말을 걸고 있다</strong>
+            <i>환경심리 기반 공간디자인 · 1주차</i>
+          </div>
+        </div>
+      </a>
+      <div class="feature-body">
+        <p class="feature-tag">Lecture</p>
+        <h3>환경심리 기반<br>공간디자인</h3>
+        <p>마음을 설계하는 실내환경, 근거 기반 공간 실천. 이론 기초부터 바이오필릭·넛지·어포던스·감각디자인까지 한 학기 강의를 슬라이드로 공개합니다.</p>
+        <div class="facts">
+          <div><b>15주</b><span>커리큘럼</span></div>
+          <div><b>450장</b><span>슬라이드</span></div>
+        </div>
+        <a class="link-arrow" href="lecture.html">강의자료 열기</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="professor">
   <div class="wrap prof">
     <div class="prof-photo reveal"><img src="assets/professor.jpg" alt="권영재 교수" loading="lazy"></div>
     <div>
@@ -402,7 +419,7 @@
   </div>
 </section>
 
-<section id="activities">
+<section class="section-alt" id="activities">
   <div class="wrap">
     <p class="kicker reveal">Activities</p>
     <h2 class="reveal">현장에서 읽고,<br>함께 설계합니다.</h2>
@@ -419,14 +436,14 @@
   </div>
 </section>
 
-<section class="contact section-alt" id="contact">
+<section class="contact" id="contact">
   <div class="wrap">
     <p class="kicker reveal">Contact</p>
     <h2 class="reveal">모두의 일상에 행복을 채우는 연구에 함께하세요.</h2>
     <dl class="contact-info reveal">
       <div><dt>Location</dt><dd>호서대학교 실내디자인학과</dd></div>
       <div><dt>Email</dt><dd><a href="mailto:kdk9923@gmail.com">kdk9923@gmail.com</a></dd></div>
-      <div><dt>Web</dt><dd><a href="https://haslab.kr">haslab.kr</a></dd></div>
+      <div><dt>Web</dt><dd><a href="https://www.haslab.kr">haslab.kr</a></dd></div>
     </dl>
   </div>
 </section>
@@ -438,17 +455,6 @@
   </div>
 </footer>
 
-<script>
-  // Scroll reveal
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Mobile nav
-  const nav = document.getElementById('nav');
-  document.getElementById('navToggle').addEventListener('click', () => nav.classList.toggle('open'));
-  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>

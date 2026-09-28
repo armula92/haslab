@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>디자인으로 행복할 수 있을까? · H.A.S. Design Lab</title>
+<meta name="description" content="권영재 『디자인으로 행복할 수 있을까? — Happy by Public Design』 공간이 바꾸는 마음, 환경이 만드는 행복.">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .book-hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(40px, 7vw, 96px); align-items: center; }
+  .book-hero .cover-wrap { background: linear-gradient(160deg, #e7efe9, #d5e4da); aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; }
+  .cover { width: 66%; aspect-ratio: 176 / 248; background: var(--green-deep); color: #fff; padding: 9% 8%; display: flex; flex-direction: column; box-shadow: 0 30px 60px -24px rgba(8,48,31,.55), 0 2px 6px rgba(0,0,0,.12); }
+  .cover small { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--green-mint); }
+  .cover strong { margin-top: auto; font-size: clamp(20px, 2.6vw, 30px); line-height: 1.22; letter-spacing: -.03em; }
+  .cover i { font-style: normal; font-size: 12px; color: rgba(255,255,255,.7); margin-top: 10px; }
+  .cover em { font-style: normal; font-size: 12px; margin-top: 22px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.25); }
+
+  .about { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(32px, 6vw, 80px); }
+  .about p { font-size: clamp(17px, 1.8vw, 19px); color: var(--ink-2); }
+  .about p + p { margin-top: 18px; }
+
+  .prologue { background: var(--green-deep); color: #fff; }
+  .prologue .kicker { color: var(--green-mint); }
+  .prologue blockquote { font-size: clamp(30px, 5vw, 60px); font-weight: 700; letter-spacing: -.035em; line-height: 1.15; }
+  .prologue .body { margin-top: 40px; max-width: 720px; font-size: clamp(17px, 1.8vw, 20px); color: rgba(255,255,255,.75); }
+  .prologue .body p + p { margin-top: 16px; }
+
+  /* Formula */
+  .formula { margin-top: clamp(48px, 7vw, 72px); font-size: clamp(22px, 3.4vw, 40px); font-weight: 700; letter-spacing: -.03em; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .45em; }
+  .formula .eq { color: var(--ink-3); font-weight: 400; }
+  .formula .t { color: var(--green); }
+  .conditions { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+  .conditions div { padding: 28px 24px 8px 0; }
+  .conditions div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .conditions h3 { font-size: 26px; letter-spacing: -.02em; }
+  .conditions .def { color: var(--green); font-weight: 600; font-size: 15px; margin-top: 4px; }
+  .conditions .ask { margin-top: 16px; color: var(--ink-2); font-size: 15.5px; }
+
+  /* Mechanisms */
+  .mech { margin-top: clamp(48px, 7vw, 72px); display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .mech div { padding: 28px 28px 28px 0; border-bottom: 1px solid var(--line); }
+  .mech div:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+  .mech .en { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+  .mech h3 { font-size: 22px; letter-spacing: -.02em; margin: 6px 0 10px; }
+  .mech p { font-size: 15.5px; color: var(--ink-2); }
+
+  /* Stats */
+  .stats { margin-top: clamp(48px, 7vw, 72px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--ink); }
+  .stat { padding: 32px 28px 36px 0; border-bottom: 1px solid var(--line); }
+  .stat:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+  .stat b { display: block; font-size: clamp(44px, 6vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--green); }
+  .stat b small { font-size: .42em; letter-spacing: -.01em; margin-left: 4px; }
+  .stat p { margin-top: 14px; font-size: 16px; font-weight: 600; }
+  .stat span { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-3); }
+
+  /* TOC */
+  .toc { margin-top: clamp(48px, 7vw, 72px); }
+  .toc-part { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; padding: 36px 0; border-top: 1px solid var(--line); }
+  .toc-part:last-child { border-bottom: 1px solid var(--line); }
+  .toc-part .pk { font-size: 13px; font-weight: 600; letter-spacing: .12em; color: var(--green); }
+  .toc-part h3 { font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -.02em; line-height: 1.25; margin-top: 6px; }
+  .toc-part ul { list-style: none; }
+  .toc-part li { display: grid; grid-template-columns: 64px 1fr; padding: 10px 0; }
+  .toc-part li + li { border-top: 1px solid var(--line-2); }
+  .toc-part li .ch { font-size: 13px; color: var(--ink-3); padding-top: 3px; }
+  .toc-part li b { font-weight: 600; font-size: 17px; }
+  .toc-part li span.s { display: block; font-size: 14.5px; color: var(--ink-2); margin-top: 2px; }
+  .toc-part li a { color: var(--green); font-size: 13px; font-weight: 500; margin-left: 8px; white-space: nowrap; }
+  .toc-part li a:hover { text-decoration: underline; }
+
+  /* Checklist */
+  .cl-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
+  .score { text-align: right; }
+  .score b { font-size: clamp(48px, 6vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--green); }
+  .score span { font-size: 18px; color: var(--ink-3); margin-left: 4px; }
+  .score p { font-size: 14px; color: var(--ink-2); margin-top: 6px; }
+  .score button { margin-top: 10px; background: none; border: 0; border-bottom: 1px solid var(--ink-3); color: var(--ink-3); font-size: 13px; cursor: pointer; padding: 0; }
+  .bar { height: 3px; background: var(--line); margin-top: 32px; }
+  .bar i { display: block; height: 100%; background: var(--green); width: 0; transition: width .5s cubic-bezier(.2,.7,.2,1); }
+  .cl-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 48px; }
+  .cl-group { padding: 24px 0 8px; }
+  .cl-group h3 { font-size: 20px; letter-spacing: -.02em; padding-bottom: 12px; border-bottom: 2px solid var(--ink); display: flex; justify-content: space-between; }
+  .cl-group h3 small { font-size: 14px; color: var(--green); font-weight: 600; }
+  .cl-group label { display: grid; grid-template-columns: 22px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line-2); font-size: 15.5px; color: var(--ink-2); cursor: pointer; }
+  .cl-group input { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border: 1.5px solid var(--ink-3); margin-top: 3px; cursor: pointer; display: grid; place-content: center; background: #fff; }
+  .cl-group input:checked { background: var(--green); border-color: var(--green); }
+  .cl-group input:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translate(1px, -1px); }
+  .cl-group input:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+  .cl-group label:has(input:checked) { color: var(--ink); }
+
+  .epi { text-align: center; }
+  .epi blockquote { font-size: clamp(30px, 5vw, 60px); font-weight: 700; letter-spacing: -.035em; line-height: 1.15; }
+  .epi blockquote em { font-style: normal; color: var(--green); }
+  .epi p { margin: 32px auto 0; max-width: 720px; font-size: clamp(17px, 1.8vw, 20px); color: var(--ink-2); }
+  .epi .lines { margin-top: 40px; font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; color: var(--ink); line-height: 1.7; }
+  .epi .lines span { color: var(--green); }
+  .epi .cta { margin-top: 48px; display: flex; justify-content: center; gap: 32px; font-size: 17px; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .book-hero, .about, .toc-part { grid-template-columns: 1fr; }
+    .book-hero .cover-wrap { max-width: 420px; order: -1; }
+    .toc-part { gap: 12px; }
+    .conditions { grid-template-columns: 1fr 1fr; }
+    .conditions div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .conditions div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .mech, .stats { grid-template-columns: 1fr 1fr; }
+    .mech div:not(:nth-child(3n+1)), .stat:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+    .mech div:nth-child(2n), .stat:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--line); }
+  }
+  @media (max-width: 560px) {
+    .conditions, .mech, .stats { grid-template-columns: 1fr; }
+    .conditions div, .conditions div + div, .mech div:nth-child(2n), .stat:nth-child(2n) { padding-left: 0; border-left: 0; }
+    .conditions div + div { border-top: 1px solid var(--line); }
+    .score { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="">H.A.S. Design Lab</a>
+    <div class="nav-links">
+      <a href="index.html#philosophy">철학</a>
+      <a href="index.html#research">연구</a>
+      <a href="happy-space.html">행복한 공간</a>
+      <a href="book.html" aria-current="page">책</a>
+      <a href="lecture.html">강의</a>
+      <a href="index.html#professor">교수</a>
+      <a href="index.html#activities">활동</a>
+      <a href="index.html#contact">연락처</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기"><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap book-hero">
+    <div>
+      <p class="eyebrow reveal">Book · Happy by Public Design</p>
+      <h1 class="reveal">디자인으로<br><em>행복할 수</em><br>있을까?</h1>
+      <p class="lead reveal">공간이 바꾸는 마음, 환경이 만드는 행복. 심리 · 생리 · 인지 · 정서 · 신체로 증명하는 공간디자인의 과학적 효과와 실천.</p>
+      <dl class="meta reveal">
+        <div><dt>Author</dt><dd>권영재</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Basis</dt><dd>환경심리학 · 행동과학 · 공공디자인 실증 연구</dd></div>
+      </dl>
+    </div>
+    <div class="cover-wrap reveal">
+      <div class="cover">
+        <small>Happy by Public Design</small>
+        <strong>디자인으로<br>행복할 수<br>있을까?</strong>
+        <i>공간이 바꾸는 마음, 환경이 만드는 행복</i>
+        <em>권영재</em>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-alt">
+  <div class="wrap about">
+    <div>
+      <p class="kicker reveal">About the Book</p>
+      <h2 class="reveal">이 책에 대하여</h2>
+    </div>
+    <div class="reveal">
+      <p>우리는 매일 공간 속에서 살아갑니다. 집, 학교, 사무실, 병원, 공원, 지하철역. 이 공간들은 단순히 활동의 배경이 아닙니다. 공간은 우리의 마음에 말을 걸고, 몸에 영향을 주며, 생각의 방향을 바꿉니다.</p>
+      <p>이 책은 ‘디자인이 사람을 행복하게 만들 수 있는가’라는 질문에서 출발합니다. 단순히 예쁘거나 편리한 공간을 넘어, 심리적 안정, 생리적 회복, 인지적 향상, 정서적 치유, 신체적 건강까지 공간디자인이 인간의 삶에 미치는 다양한 효과를 과학적 근거와 함께 소개합니다.</p>
+      <p>이 책은 전문가가 아닌 모든 사람을 위해 쓰였습니다. 환경심리학과 행동과학의 연구 결과를 쉬운 이야기로 풀어내고, 실제 사례를 통해 공간이 어떻게 사람을 바꾸는지 보여드립니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="prologue">
+  <div class="wrap">
+    <p class="kicker reveal">Prologue</p>
+    <blockquote class="reveal">마음은 의지로만<br>버티지 않는다.</blockquote>
+    <div class="body reveal">
+      <p>불안과 우울은 대개 ‘생각’이 아니라 ‘조건’에서 악화됩니다. 소리, 빛, 시선, 거리, 통로, 문턱, 대기 공간, 그리고 ‘내가 통제할 수 있는 정도’와 같은 환경적 변수들입니다.</p>
+      <p>인천의 한 도시숲에서 소방공무원 63명이 4회기 산림치유 프로그램에 참여했습니다. 직무스트레스, 외상후스트레스, 우울감이 모두 의미 있게 줄어들었습니다. 환경 조건을 바꾼 것만으로 결과가 달라진 것입니다. 이것은 ‘힐링 감성’이 아니라 근거 기반 개입의 문제입니다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">The Formula</p>
+    <h2 class="reveal">행복은 감정이 아니라<br>‘조건’이다.</h2>
+    <p class="section-lead reveal">이 책은 행복을 거창한 목표가 아니라, 공간디자인으로 구현할 수 있는 네 가지 ‘설계 가능한 환경 변수’로 정의합니다.</p>
+    <p class="formula reveal"><span>행복</span><span class="eq">=</span><span class="t">존엄</span><span class="eq">+</span><span class="t">안전</span><span class="eq">+</span><span class="t">관계</span><span class="eq">+</span><span class="t">통제감</span></p>
+    <div class="conditions reveal">
+      <div><h3>존엄</h3><p class="def">수치심이 덜한 상태</p><p class="ask">오늘 하루, 누군가의 시선 때문에 불편하지 않았나요?</p></div>
+      <div><h3>안전</h3><p class="def">감각이 덜 위협적인 상태</p><p class="ask">주변 소리와 빛이 너무 자극적이지는 않았나요?</p></div>
+      <div><h3>관계</h3><p class="def">다시 연결될 수 있는 상태</p><p class="ask">마음이 힘들 때 연락할 사람이 있나요?</p></div>
+      <div><h3>통제감</h3><p class="def">내가 조절할 수 있는 상태</p><p class="ask">내 방의 조명을 내가 조절할 수 있나요?</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <p class="kicker reveal">Six Mechanisms</p>
+    <h2 class="reveal">공간이 마음에 닿는<br>여섯 가지 경로</h2>
+    <p class="section-lead reveal">환경심리학이 정리한 여섯 가지 메커니즘은 이 책 전체를 관통하는 분석의 틀입니다.</p>
+    <div class="mech reveal">
+      <div><p class="en">Safety</p><h3>안전감</h3><p>위협 단서가 줄고 예측 가능한 환경이 되면, 몸의 경계 반응이 낮아집니다.</p></div>
+      <div><p class="en">Control &amp; Choice</p><h3>통제감 · 선택권</h3><p>빛, 소리, 프라이버시를 스스로 조절할 수 있으면 무기력감과 불안이 줄어듭니다.</p></div>
+      <div><p class="en">Sensory Load</p><h3>감각 부하 조절</h3><p>자극이 적은 공간과 활동적인 공간이 분리되면 감정 조절이 수월해집니다.</p></div>
+      <div><p class="en">Circadian Rhythm</p><h3>일주기 리듬 · 수면</h3><p>자연광과 아침 햇빛은 수면과 기분 조절에 직접 영향을 줍니다.</p></div>
+      <div><p class="en">Restorative Environment</p><h3>회복 환경</h3><p>녹지, 물, 하늘은 스트레스 회복의 생리적·정서적 경로를 강화합니다.</p></div>
+      <div><p class="en">Social Support</p><h3>사회적 지지</h3><p>만남이 가능한 공간 구조가 신뢰와 유대를 만들어 정신건강에 기여합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">Evidence</p>
+    <h2 class="reveal">느낌이 아니라,<br>측정의 문제입니다.</h2>
+    <p class="section-lead reveal">책에 소개된 실증 연구들은 공간의 조건이 달라지면 같은 사람도 다른 결과를 보인다는 사실을 보여줍니다.</p>
+    <div class="stats">
+      <div class="stat reveal"><b>1<small>일</small></b><p>수술 후 회복 기간 단축</p><span>창밖 자연 조망 병실 · Ulrich, 1984</span></div>
+      <div class="stat reveal"><b>20<small>%</small></b><p>기억력 향상</p><span>공원 산책 후 · Berman et al., 2008</span></div>
+      <div class="stat reveal"><b>2.6<small>일</small></b><p>우울증 입원 기간 단축</p><span>밝은 병실 · Beauchemin &amp; Hays, 1996</span></div>
+      <div class="stat reveal"><b>26<small>%</small></b><p>읽기 성적 향상</p><span>자연광 풍부한 교실 · Heschong, 1999</span></div>
+      <div class="stat reveal"><b>66<small>%</small></b><p>계단 이용 증가</p><span>스톡홀름 피아노 계단 · 2009</span></div>
+      <div class="stat reveal"><b>50<small>%</small></b><p>강제 조치 감소</p><span>정신과 병동 환경 개선 · Ulrich et al., 2018</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <p class="kicker reveal">Contents</p>
+    <h2 class="reveal">목차</h2>
+    <div class="toc">
+      <div class="toc-part reveal">
+        <div><p class="pk">제1부</p><h3>공간은 당신에게<br>말을 걸고 있다</h3></div>
+        <ul>
+          <li><span class="ch">제1장</span><div><b>왜 어떤 공간에서는 기분이 좋아질까?</b><span class="s">환경심리학, 공간과 마음의 과학</span></div></li>
+          <li><span class="ch">제2장</span><div><b>행복은 감정이 아니라 ‘조건’이다</b><span class="s">설계할 수 있는 네 가지 행복의 조건</span></div></li>
+          <li><span class="ch">제3장</span><div><b>존엄이 상처받지 않는 환경</b><span class="s">수치심을 줄이는 공간의 문법</span></div></li>
+        </ul>
+      </div>
+      <div class="toc-part reveal">
+        <div><p class="pk">제2부</p><h3>공간이 바꾸는<br>다섯 가지</h3></div>
+        <ul>
+          <li><span class="ch">제4장</span><div><b>마음이 편해지는 공간</b><span class="s">심리적 안정을 만드는 디자인</span></div></li>
+          <li><span class="ch">제5장</span><div><b>몸이 반응하는 공간</b><span class="s">생리적 회복을 이끄는 환경</span></div></li>
+          <li><span class="ch">제6장</span><div><b>집중력이 살아나는 공간</b><span class="s">인지 능력을 높이는 자연과 빛</span></div></li>
+          <li><span class="ch">제7장</span><div><b>기분이 나아지는 공간</b><span class="s">정서를 다독이는 색, 소리, 향기</span></div></li>
+          <li><span class="ch">제8장</span><div><b>몸이 건강해지는 공간</b><span class="s">신체 활동을 유도하는 디자인</span></div></li>
+        </ul>
+      </div>
+      <div class="toc-part reveal">
+        <div><p class="pk">제3부</p><h3>공간디자인의<br>비밀 도구들</h3></div>
+        <ul>
+          <li><span class="ch">제9장</span><div><b>자연을 가져오다: 바이오필릭 디자인</b><span class="s">식물, 물, 빛이 치유하는 과학</span></div></li>
+          <li><span class="ch">제10장</span><div><b>부드럽게 유도하다: 넛지 디자인</b><span class="s">선택의 구조를 바꾸는 작은 장치들</span></div></li>
+          <li><span class="ch">제11장</span><div><b>행동을 초대하다: 어포던스 디자인</b><span class="s">공간의 형태가 행동을 만든다</span></div></li>
+          <li><span class="ch">제12장</span><div><b>감각을 설계하다: 빛, 소리, 색의 과학</b><span class="s">오감으로 경험하는 공간</span></div></li>
+        </ul>
+      </div>
+      <div class="toc-part reveal">
+        <div><p class="pk">제4부</p><h3>모두를 위한 공간,<br>모두를 위한 행복</h3></div>
+        <ul>
+          <li><span class="ch">제13장</span><div><b>치유하는 공간: 아픈 마음을 위한 디자인</b><span class="s">트라우마 · 우울 · 불안을 줄이는 환경</span></div></li>
+          <li><span class="ch">제14장</span><div><b>연결하는 공간: 관계를 회복하는 디자인</b><span class="s">고립을 넘어 다시 이어지는 곳</span></div></li>
+          <li><span class="ch">에필로그</span><div><b>공간은 친절할수록 강하다</b></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="wrap">
+    <div class="cl-head">
+      <div>
+        <p class="kicker reveal">Appendix · Checklist</p>
+        <h2 class="reveal">우리 공간은<br>얼마나 행복한가요?</h2>
+        <p class="section-lead reveal">책의 부록에 실린 공간디자인 체크리스트입니다. 지금 머무는 공간을 떠올리며 해당하는 항목을 선택해 보세요.</p>
+      </div>
+      <div class="score reveal" aria-live="polite">
+        <b id="score">0</b><span>/ 25</span>
+        <p id="verdict">항목을 선택해 보세요</p>
+        <button id="reset" type="button">초기화</button>
+      </div>
+    </div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="cl-grid" id="cl"></div>
+  </div>
+</section>
+
+<section class="section-alt epi">
+  <div class="wrap">
+    <p class="kicker reveal">Epilogue</p>
+    <blockquote class="reveal">공간은 <em>친절할수록</em><br>강하다.</blockquote>
+    <p class="reveal">가장 취약한 사람을 위해 설계된 공간이 결국 모두에게 좋은 공간이 됩니다. 장애인을 위해 낮춘 턱은 유모차를 끄는 부모에게도, 무거운 짐을 든 여행자에게도 도움이 됩니다.</p>
+    <p class="lines reveal">공간이 바뀌면, 마음이 바뀝니다.<br>마음이 바뀌면, 삶이 바뀝니다.<br><span>디자인으로 행복할 수 있습니다.</span></p>
+    <div class="cta reveal">
+      <a class="link-arrow" href="happy-space.html">외전 · 행복한 공간 레시피 30선</a>
+      <a class="link-arrow" href="lecture.html">이 책 기반의 15주 강의</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" alt="H.A.S Lab — Happiness &amp; Space Design">
+    <p>© 2026 권영재 · H.A.S. Design Lab, Hoseo University</p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  const groups = [
+    ['안전감', ['사각지대 없이 시야가 확보되는가?', '예측 가능한 동선이 설계되어 있는가?', '출구가 명확히 보이고 접근 가능한가?', '갑작스러운 소음이나 시각적 충격이 없는가?', '충분한 조명이 확보되어 있는가?']],
+    ['통제감', ['조명 밝기를 이용자가 조절할 수 있는가?', '온도나 환기를 이용자가 조절할 수 있는가?', '프라이버시를 조절할 수 있는 장치(커튼, 파티션)가 있는가?', '좌석이나 대기 방식을 선택할 수 있는가?', '이용자가 자신의 공간을 개인화할 수 있는가?']],
+    ['자연 요소', ['자연광이 충분히 들어오는가?', '실내 또는 실외에서 녹지가 보이는가?', '실내 식물이 배치되어 있는가?', '물 요소(분수, 수경)가 있는가?', '자연의 소리가 들리거나 도입되어 있는가?']],
+    ['감각 환경', ['소음 수준이 적절한가?', '색채가 기능(길찾기, 정서 조절)에 맞게 사용되었는가?', '자연 소재(나무, 돌)가 사용되었는가?', '향기가 쾌적한가?', '촉감이 편안한 소재가 사용되었는가?']],
+    ['사회적 연결', ['자연스러운 만남이 일어나는 공간이 있는가?', '다양한 규모의 모임이 가능한가?', '혼자 있을 수 있는 공간과 함께할 수 있는 공간이 모두 있는가?', '공용 공간의 접근성이 좋은가?', '동선에서 자연스럽게 마주치는 구조인가?']]
+  ];
+  const KEY = 'haslab-checklist';
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+
+  const cl = document.getElementById('cl');
+  cl.innerHTML = groups.map(([g, items], gi) =>
+    `<div class="cl-group"><h3>${g}<small id="g${gi}">0 / 5</small></h3>` +
+    items.map((t, ii) => { const id = `c${gi}-${ii}`; return `<label><input type="checkbox" id="${id}" ${saved.includes(id) ? 'checked' : ''}><span>${t}</span></label>`; }).join('') +
+    `</div>`).join('');
+
+  function update() {
+    const boxes = [...cl.querySelectorAll('input')];
+    const on = boxes.filter(b => b.checked);
+    groups.forEach((_, gi) => {
+      document.getElementById('g' + gi).textContent = on.filter(b => b.id.startsWith(`c${gi}-`)).length + ' / 5';
+    });
+    const n = on.length;
+    document.getElementById('score').textContent = n;
+    document.getElementById('bar').style.width = (n / 25 * 100) + '%';
+    document.getElementById('verdict').textContent =
+      n === 0 ? '항목을 선택해 보세요' :
+      n < 10 ? '작은 변화부터 시작해 볼 공간입니다' :
+      n < 18 ? '좋은 조건을 갖춘 공간입니다' :
+      n < 25 ? '행복한 공간에 가깝습니다' : '모두를 위한 행복한 공간입니다';
+    try { localStorage.setItem(KEY, JSON.stringify(on.map(b => b.id))); } catch (e) {}
+  }
+  cl.addEventListener('change', update);
+  document.getElementById('reset').addEventListener('click', () => { cl.querySelectorAll('input').forEach(b => b.checked = false); update(); });
+  update();
+})();
+</script>
+</body>
+</html>
