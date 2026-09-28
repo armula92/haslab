@@ -1,9 +1,9 @@
 :root {
-  --green: #0d4a34;
-  --green-deep: #08301f;
-  --green-soft: #438a7a;
-  --green-mint: #8fc6b3;
-  --green-tint: #eef4f1;
+  --green: #013d00;
+  --green-deep: #013d00;
+  --green-soft: #2f6b2c;
+  --green-mint: #a8d5a2;
+  --green-tint: #eef5ec;
   --ink: #1d1d1f;
   --ink-2: #515154;
   --ink-3: #86868b;
@@ -32,20 +32,18 @@ button { font: inherit; color: inherit; }
 /* ---------- Nav ---------- */
 .nav {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.78);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  background: var(--green);
+  border-bottom: 1px solid rgba(255,255,255,.12);
 }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 52px; }
-.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: -.01em; color: var(--green); flex-shrink: 0; }
-.nav-logo img { width: 42px; height: auto; object-fit: contain; }
-.nav-links { display: flex; gap: 26px; font-size: 13px; color: var(--ink-2); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.nav-logo { display: flex; align-items: center; flex-shrink: 0; }
+.nav-logo img { height: 34px; width: auto; object-fit: contain; }
+.nav-links { display: flex; gap: 26px; font-size: 13px; color: rgba(255,255,255,.78); }
 .nav-links a { transition: color .2s; white-space: nowrap; }
-.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--green); }
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: #fff; }
 .nav-links a[aria-current="page"] { font-weight: 600; }
 .nav-toggle { display: none; background: none; border: 0; width: 32px; height: 32px; cursor: pointer; }
-.nav-toggle span { display: block; width: 18px; height: 1.5px; background: var(--ink); margin: 5px auto; transition: transform .3s; }
+.nav-toggle span { display: block; width: 18px; height: 1.5px; background: #fff; margin: 5px auto; transition: transform .3s; }
 
 /* ---------- Common type ---------- */
 section { padding: clamp(88px, 12vw, 150px) 0; }
@@ -69,11 +67,11 @@ h2 { font-size: clamp(32px, 5vw, 56px); line-height: 1.12; letter-spacing: -.03e
 .page-hero .meta dd { font-size: 16px; font-weight: 600; margin-top: 2px; }
 
 /* Footer */
-footer { background: var(--bg-alt); padding: 40px 0 48px; font-size: 12px; color: var(--ink-3); }
-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
-footer img { width: 150px; height: auto; object-fit: contain; }
-footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
-footer nav a:hover { color: var(--green); }
+footer { background: var(--green); padding: 56px 0 60px; font-size: 12.5px; color: rgba(255,255,255,.6); }
+footer .wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+footer img { width: 220px; height: auto; object-fit: contain; }
+footer a { color: rgba(255,255,255,.85); }
+footer a:hover { color: #fff; }
 
 /* Reveal */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
@@ -86,13 +84,13 @@ footer nav a:hover { color: var(--green); }
 @media (max-width: 960px) {
   .nav-toggle { display: block; }
   .nav-links {
-    position: absolute; top: 52px; left: 0; right: 0;
+    position: absolute; top: 56px; left: 0; right: 0;
     flex-direction: column; gap: 0; padding: 8px var(--gutter) 20px;
-    background: rgba(255,255,255,.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,.08);
+    background: var(--green);
+    border-bottom: 1px solid rgba(255,255,255,.08);
     font-size: 17px; display: none;
   }
-  .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line-2); }
+  .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
   .nav.open .nav-links { display: flex; }
   .nav.open .nav-toggle span:first-child { transform: translateY(3.25px) rotate(45deg); }
   .nav.open .nav-toggle span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
