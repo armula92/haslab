@@ -17,14 +17,50 @@
   nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 })();
 
-// Language links: 현재 페이지를 원문(한국어) 또는 Google 번역(중국어)으로 연결
+// Language: Google 웹사이트 번역기로 한국어(원문) / 중국어 전환
 (function () {
   const ko = document.querySelector('.lang-ko');
   const zh = document.querySelector('.lang-zh');
   if (!ko || !zh) return;
-  const path = location.protocol.startsWith('http') ? location.pathname : '/';
-  const translated = /translate\.goog$/.test(location.hostname);
-  ko.href = 'https://www.haslab.kr' + path;
-  zh.href = 'https://www-haslab-kr.translate.goog' + path + '?_x_tr_sl=ko&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN&_x_tr_pto=wapp';
-  (translated ? zh : ko).setAttribute('aria-current', 'true');
+
+  const host = location.hostname;
+  const domains = ['', host, host.replace(/^www\./, '.')];
+  function setCookie(v) {
+    domains.forEach(d => {
+      document.cookie = 'googtrans=' + v + '; path=/' + (d ? '; domain=' + d : '') + (v ? '' : '; expires=Thu, 01 Jan 1970 00:00:00 GMT');
+    });
+  }
+  function current() {
+    const m = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
+    return m && /\/zh/.test(decodeURIComponent(m[1])) ? 'zh' : 'ko';
+  }
+  function go(lang) {
+    setCookie('');
+    if (lang === 'zh') setCookie('/ko/zh-CN');
+    const url = new URL(location.href);
+    url.searchParams.delete('lang');
+    location.replace(url.toString());
+  }
+
+  // ?lang=zh / ?lang=ko 로 공유 가능한 링크
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q === 'zh' || q === 'ko') { go(q); return; }
+
+  ko.addEventListener('click', e => { e.preventDefault(); if (current() !== 'ko') go('ko'); });
+  zh.addEventListener('click', e => { e.preventDefault(); if (current() !== 'zh') go('zh'); });
+
+  const lang = current();
+  (lang === 'zh' ? zh : ko).setAttribute('aria-current', 'true');
+  if (lang !== 'zh') return;
+
+  const holder = document.createElement('div');
+  holder.id = 'google_translate_element';
+  holder.hidden = true;
+  document.body.appendChild(holder);
+  window.gtInit = function () {
+    new google.translate.TranslateElement({ pageLanguage: 'ko', includedLanguages: 'zh-CN', autoDisplay: false }, 'google_translate_element');
+  };
+  const s = document.createElement('script');
+  s.src = 'https://translate.google.com/translate_a/element.js?cb=gtInit';
+  document.body.appendChild(s);
 })();
