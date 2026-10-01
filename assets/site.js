@@ -73,3 +73,52 @@
   s.src = 'https://translate.google.com/translate_a/element.js?cb=gtInit';
   document.body.appendChild(s);
 })();
+
+// Popup pages: <a data-popup="제목" href="page.html">
+(function () {
+  const links = document.querySelectorAll('a[data-popup]');
+  if (!links.length) return;
+
+  const pop = document.createElement('div');
+  pop.className = 'popup';
+  pop.setAttribute('role', 'dialog');
+  pop.setAttribute('aria-modal', 'true');
+  pop.innerHTML = '<div class="popup-box"><div class="popup-bar"><span></span><a target="_blank" rel="noopener">새 창으로 열기 ↗</a><button class="popup-close" type="button" aria-label="닫기">×</button></div><iframe title=""></iframe></div>';
+  document.body.appendChild(pop);
+  const title = pop.querySelector('.popup-bar span');
+  const ext = pop.querySelector('.popup-bar a');
+  const frame = pop.querySelector('iframe');
+  const close = pop.querySelector('.popup-close');
+  let opener = null;
+
+  function open(a) {
+    opener = a;
+    const href = a.getAttribute('href');
+    title.textContent = a.dataset.popup || a.textContent.trim();
+    frame.title = title.textContent;
+    ext.href = href;
+    frame.src = href + (href.indexOf('?') < 0 ? '?' : '&') + 'embed=1';
+    pop.classList.add('open');
+    document.body.classList.add('popup-lock');
+    close.focus();
+  }
+  function hide() {
+    pop.classList.remove('open');
+    document.body.classList.remove('popup-lock');
+    frame.src = 'about:blank';
+    if (opener) opener.focus();
+  }
+
+  links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(a); }));
+  close.addEventListener('click', hide);
+  pop.addEventListener('click', e => { if (e.target === pop) hide(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && pop.classList.contains('open')) hide(); });
+})();
+
+// Inside a popup (?embed=1): keep embed mode on links to other pages of this site
+(function () {
+  if (!document.documentElement.classList.contains('embed')) return;
+  document.querySelectorAll('a[href$=".html"]:not([target])').forEach(a => {
+    a.setAttribute('href', a.getAttribute('href') + '?embed=1');
+  });
+})();
